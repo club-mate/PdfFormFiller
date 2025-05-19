@@ -11,6 +11,7 @@ dependencies = [
     "pdf2image>=1.17.0",
     "pdfrw>=0.4",
     "psycopg2-binary>=2.9.10",
+    "pycryptodome>=3.23.0",
     "pypdf2>=3.0.1",
     "reportlab>=4.4.1",
     "sqlalchemy>=2.0.41",

@@ -2,7 +2,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["freetype", "glibcLocales", "openssl", "poppler_utils", "postgresql"]
+packages = ["freetype", "glibcLocales", "gmp", "openssl", "poppler_utils", "postgresql"]
 
 [deployment]
 deploymentTarget = "autoscale"
