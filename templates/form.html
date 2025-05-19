@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i data-feather="edit-3" class="me-2"></i> Fill form for: {{ template.name }}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if fields %}
+                <form id="pdfForm" action="{{ url_for('submit_form', template_id=template.id) }}" method="POST">
+                    {% for field in fields %}
+                    <div class="mb-3">
+                        <label for="{{ field.field_name }}" class="form-label">{{ field.field_name | replace('_', ' ') | title }}</label>
+                        <input type="text" class="form-control" id="{{ field.field_name }}" name="{{ field.field_name }}" required>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                            <i data-feather="arrow-left" class="me-1"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i data-feather="save" class="me-1"></i> Submit and Generate PDF
+                        </button>
+                    </div>
+                </form>
+                {% else %}
+                <div class="alert alert-warning">
+                    <i data-feather="alert-triangle" class="me-2"></i>
+                    No form fields found in this template.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                        <i data-feather="arrow-left" class="me-1"></i> Back to Templates
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}
