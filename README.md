@@ -1,8 +1,13 @@
-# PDF Form Processor
+# PDF Form Filler
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: PEP 8](https://img.shields.io/badge/Code%20Style-PEP%208-brightgreen.svg)](https://www.python.org/dev/peps/pep-0008/)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baadc.svg)](CODE_OF_CONDUCT.md)
 
 A Python-based tool that extracts form fields from PDFs, stores entries in a database, and generates filled PDFs with PNG conversion.
 
-## Features
+## 📋 Features
 
 - Upload PDF templates with fillable form fields
 - Extract form fields automatically from PDF documents
@@ -150,6 +155,55 @@ This repository includes a command-line tool for working with PDF forms without 
 - Complex form layouts might not render perfectly in PNG previews
 - Very large PDF files might take longer to process
 
-## License
+## 🤝 Contributing
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to:
+
+- Report bugs
+- Suggest features
+- Submit pull requests
+- Set up your development environment
+
+### Quick Start for Contributors
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+5. Push to the branch (`git push origin feature/AmazingFeature`)
+6. Open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+## 📝 Community
+
+- **Questions?** Check our [SUPPORT.md](SUPPORT.md) for help
+- **Discussions**: Use [GitHub Discussions](https://github.com/club-mate/PdfFormFiller/discussions)
+- **Issues**: Report bugs via [GitHub Issues](https://github.com/club-mate/PdfFormFiller/issues)
+- **Code of Conduct**: Please read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+
+## 🔒 Security
+
+For security-related concerns, please see [SECURITY.md](SECURITY.md) for responsible disclosure guidelines.
+
+## 📚 Additional Resources
+
+- [CHANGELOG.md](CHANGELOG.md) - Version history and changes
+- [MAINTAINERS.md](MAINTAINERS.md) - Maintenance guidelines
+- [SUPPORT.md](SUPPORT.md) - Getting help and support
+- [SECURITY.md](SECURITY.md) - Security policies
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [Flask](https://flask.palletsprojects.com/)
+- PDF processing powered by [PyPDF2](https://github.com/py-pdf/PyPDF2) and [pdfrw](https://github.com/pmaupin/pdfrw)
+- UI framework: [Bootstrap](https://getbootstrap.com/)
+- Thanks to all contributors and the open source community!
+
+---
+
+**Made with ❤️ by the PDF Form Filler community**
