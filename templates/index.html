@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i data-feather="upload" class="me-2"></i> Upload PDF Form Template
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Upload a PDF file with fillable form fields to create a new template.</p>
+                <form action="{{ url_for('upload_pdf') }}" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="template_name" class="form-label">Template Name</label>
+                        <input type="text" class="form-control" id="template_name" name="template_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pdf_file" class="form-label">PDF File</label>
+                        <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept=".pdf" required>
+                        <div class="form-text">Only PDF files with fillable form fields are supported.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i data-feather="upload-cloud" class="me-1"></i> Upload
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i data-feather="list" class="me-2"></i> Existing PDF Templates
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if templates %}
+                    <div class="list-group">
+                        {% for template in templates %}
+                            <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-1">{{ template.name }}</h5>
+                                    <p class="mb-1 text-muted small">
+                                        <i data-feather="calendar" class="me-1" style="width: 14px; height: 14px;"></i>
+                                        {{ template.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                    </p>
+                                    <p class="mb-1 text-muted small">
+                                        <i data-feather="file" class="me-1" style="width: 14px; height: 14px;"></i>
+                                        {{ template.original_filename }}
+                                    </p>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ url_for('fill_form', template_id=template.id) }}" class="btn btn-primary btn-sm">
+                                        <i data-feather="edit" style="width: 14px; height: 14px;"></i>
+                                        Fill Form
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm" 
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal{{ template.id }}">
+                                        <i data-feather="trash-2" style="width: 14px; height: 14px;"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" id="deleteModal{{ template.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ template.id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger text-white">
+                                            <h5 class="modal-title" id="deleteModalLabel{{ template.id }}">Confirm Delete</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete the template <strong>{{ template.name }}</strong>?
+                                            <p class="text-danger mt-2">
+                                                <i data-feather="alert-triangle" class="me-1"></i>
+                                                This will also delete all filled forms created with this template.
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <form action="{{ url_for('delete_template', template_id=template.id) }}" method="POST">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-4">
+                        <i data-feather="file-text" style="width: 48px; height: 48px; color: var(--bs-secondary);"></i>
+                        <p class="mt-3">No templates found. Upload a PDF with form fields to get started.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i data-feather="info" class="me-2"></i> How It Works
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="p-3 border rounded mb-2">
+                            <i data-feather="upload" style="width: 32px; height: 32px; color: var(--bs-primary);"></i>
+                        </div>
+                        <h5>1. Upload PDF Template</h5>
+                        <p class="text-muted">Upload a PDF file with fillable form fields</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="p-3 border rounded mb-2">
+                            <i data-feather="edit-3" style="width: 32px; height: 32px; color: var(--bs-primary);"></i>
+                        </div>
+                        <h5>2. Fill Form</h5>
+                        <p class="text-muted">Enter your data into the extracted form fields</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="p-3 border rounded mb-2">
+                            <i data-feather="download" style="width: 32px; height: 32px; color: var(--bs-primary);"></i>
+                        </div>
+                        <h5>3. Get Filled PDF & PNG</h5>
+                        <p class="text-muted">Download your filled PDF and PNG files</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

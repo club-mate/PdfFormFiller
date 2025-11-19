@@ -1,0 +1,79 @@
+/* Custom CSS styles */
+
+/* Form field styling */
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Card hover effect */
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Custom button hover */
+.btn-primary:hover {
+    background-color: var(--bs-primary-rgb);
+    filter: brightness(90%);
+}
+
+/* Footer styling */
+.footer {
+    position: relative;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid var(--bs-dark);
+}
+
+/* Custom styling for file input */
+.form-control[type="file"] {
+    padding: 0.375rem 0.75rem;
+}
+
+/* Modal improvements */
+.modal-content {
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.modal-header {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+/* Preview image in modal */
+.modal-body img {
+    max-height: 70vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom styling for list items */
+.list-group-item {
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: var(--bs-dark);
+}
+
+/* Form validation styling */
+.is-invalid {
+    border-color: var(--bs-danger) !important;
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.2em;
+}
+
+/* Empty state styling */
+.text-center i[data-feather] {
+    opacity: 0.6;
+}
